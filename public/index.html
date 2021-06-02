@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<div class="nometamask">
+    <div class="nopopup" id="nopopup">
+        <div class="nopopup-inner">
+            <div class="exchange-off">
+                <img src="./assets/img/bgrnd.jpg" alt="" width="100%" class="exchange">
+            </div>
+        </div>
+
+
+        <div class="install-metamask">Install Metamask.<br> Then, reload...<br><img src="./assets/img/metamask_logo.svg" height="250px" style="margin-bottom: 40px"><br></div>
+        <div class="metamask-link"><a href="https://metamask.io/download.html" target="_blank">Download Here</a></div>
+
+    </div>
+
+    <div class="refreshButton_" onclick="reloadExchange()"
+         onmouseenter="displreload()" onmouseleave="mouseExit()"
+    ></div>
+</div>
+
+<script>
+
+    function reloadExchange(){window.location.reload(true);}
+
+
+
+    window.addEventListener('load', function () {
+        if (typeof web3 == 'undefined') {
+            window.location.href = "#nopopup";
+            document.getElementsByClassName('nometamask')[0].style.display = "block";
+            document.getElementsByClassName('hasmetamask')[0].style.display = "none";
+        } else {
+            document.getElementsByClassName("nometamask")[0].style.display = "block";
+            window.location.href = "#popup";
+        }
+    });
+
+
+</script>
+
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<style>
+
+    body {background:none transparent !important;
+    }
+
+    .nometamask {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hasmetamask {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .metamask-link {
+        margin-right: 0;
+        position: absolute;
+        margin-top: 300px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .install-metamask {
+        margin-right: 0;
+        position: absolute;
+        margin-bottom: 90px;
+        text-align: center;
+        color: yellow;
+        font-size: 30px;
+        font-weight: bold;
+        border: 3px solid;
+        padding: 60px;
+        border-radius: 100px;
+        background: rgba(47, 36, 132,0.6);
+    }
+
+
+    .nopopup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: 2;
+        visibility: hidden;
+        opacity: 0;
+        overflow: hidden;
+        transition: .64s ease-in-out;
+    }
+
+
+
+    .nopopup:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nopopup:target .nopopup-inner {
+        bottom: 0;
+        right: 0;
+        transform: rotate(0);
+    }
+
+    .refreshButton_ {
+        border: 0px solid !important;
+        border-radius: 100px !important;
+        height: 33px;
+        width: 33px;
+        background: none !important;
+        position: absolute;
+        margin-top: 298px;
+        margin-left: 830px;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+
+</style>
+
+</body>
+</html>
